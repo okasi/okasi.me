@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- HTML Meta Tags -->
+		<meta charset="utf-8" />
+
+		<meta
+			name="description"
+			content="Okan's personal website. Links to his social media profiles."
+		/>
+
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5f4b8b" />
+		<meta name="msapplication-TileColor" content="#ff0000" />
+		<meta name="theme-color" content="#ffffff" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- Facebook Meta Tags -->
+		<meta property="og:url" content="https://okasi.me/" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Oka Si - Personal website" />
+		<meta
+			property="og:description"
+			content="Okan's personal website. Links to his social media profiles."
+		/>
+		<meta property="og:image" content="https://okasi.me/thumbnail.png" />
+
+		<!-- Twitter Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta property="twitter:domain" content="okasi.me" />
+		<meta property="twitter:url" content="https://okasi.me/" />
+		<meta name="twitter:title" content="Oka Si - Personal website" />
+		<meta
+			name="twitter:description"
+			content="Okan's personal website. Links to his social media profiles."
+		/>
+		<meta name="twitter:image" content="https://okasi.me/thumbnail.png" />
+
+		<!-- Yandex.Metrika counter -->
+		<script type="text/javascript">
+			(function (m, e, t, r, i, k, a) {
+				m[i] =
+					m[i] ||
+					function () {
+						(m[i].a = m[i].a || []).push(arguments);
+					};
+				m[i].l = 1 * new Date();
+				(k = e.createElement(t)),
+					(a = e.getElementsByTagName(t)[0]),
+					(k.async = 1),
+					(k.src = r),
+					a.parentNode.insertBefore(k, a);
+			})(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+			ym(86775231, 'init', {
+				clickmap: true,
+				trackLinks: true,
+				accurateTrackBounce: true,
+				webvisor: true
+			});
+		</script>
+		<noscript
+			><div>
+				<img
+					src="https://mc.yandex.ru/watch/86775231"
+					style="position: absolute; left: -9999px"
+					alt=""
+				/></div
+		></noscript>
+		<!-- /Yandex.Metrika counter -->
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-638VYVTSWJ"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+
+			gtag('config', 'G-638VYVTSWJ');
+		</script>
+
+		%svelte.head%
+	</head>
+	<body>
+		<div id="svelte">%svelte.body%</div>
+	</body>
+</html>
