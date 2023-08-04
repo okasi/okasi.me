@@ -1,26 +1,27 @@
-<script context="module">
-	export const prerender = true;
-</script>
-
 <script>
-	import { BlurhashImage } from 'svelte-blurhash';
+	import { BlurhashImage } from "svelte-blurhash";
 
-	import Github from '$lib/icons/github.svelte';
-	import Instagram from '$lib/icons/instagram.svelte';
-	import Linkedin from '$lib/icons/linkedin.svelte';
-	import Telegram from '$lib/icons/telegram.svelte';
-	import Twitter from '$lib/icons/twitter.svelte';
-	import Youtube from '$lib/icons/youtube.svelte';
+	import Github from "$lib/icons/github.svelte";
+	import Instagram from "$lib/icons/instagram.svelte";
+	import Linkedin from "$lib/icons/linkedin.svelte";
+	import Telegram from "$lib/icons/telegram.svelte";
+	import Twitter from "$lib/icons/twitter.svelte";
+	import Youtube from "$lib/icons/youtube.svelte";
 
-	import { fade } from 'svelte/transition';
-	import { onMount } from 'svelte';
+	import { fade } from "svelte/transition";
+	import { onMount } from "svelte";
 	let ready = false;
 	onMount(() => (ready = true));
 
-	import { style } from 'svelte-body';
-
 	$: innerWidth = 0;
 	$: innerHeight = 0;
+
+	onMount(() => {
+		innerHeight = window.innerHeight;
+		window.addEventListener("resize", () => {
+			innerHeight = window.innerHeight;
+		});
+	});
 </script>
 
 <svelte:window bind:innerWidth bind:innerHeight />
@@ -29,7 +30,7 @@
 	<title>Oka Si - Personal website</title>
 </svelte:head>
 
-<svelte:body use:style={`min-height: ${innerHeight}px;`} />
+{@html `<style>body {min-height: ${innerHeight}px;}</style>`}
 
 {#if ready}
 	<section in:fade>
@@ -55,7 +56,11 @@
 					<a href="https://github.com/okasi" target="_blank" title="Github">
 						<Github class="icon" />
 					</a>
-					<a href="https://www.linkedin.com/in/okasi" target="_blank" title="LinkedIn">
+					<a
+						href="https://www.linkedin.com/in/okasi"
+						target="_blank"
+						title="LinkedIn"
+					>
 						<Linkedin class="icon" />
 					</a>
 					<a href="https://t.me/okasi_me" target="_blank" title="Telegram">
@@ -68,18 +73,26 @@
 					>
 						<Youtube class="icon" />
 					</a>
-					<a href="https://twitter.com/okasi_me" target="_blank" title="Twitter">
+					<a
+						href="https://twitter.com/okasi_me"
+						target="_blank"
+						title="Twitter"
+					>
 						<Twitter class="icon" />
 					</a>
-					<a href="https://www.instagram.com/okasi.me/" target="_blank" title="Instagram">
+					<a
+						href="https://www.instagram.com/okasi.me/"
+						target="_blank"
+						title="Instagram"
+					>
 						<Instagram class="icon" />
 					</a>
 				</div>
 			</div>
 			<div class="profile" title="📷">
 				<BlurhashImage
-					src={'/OkaSiPurple.jpg'}
-					hash={'eXKwbqk9_4WBE0xcRjV[oyR%M|M|M_axt7_3WUocagRjt8WUR$t7j]'}
+					src={"/OkaSiPurple.jpg"}
+					hash={"eXKwbqk9_4WBE0xcRjV[oyR%M|M|M_axt7_3WUocagRjt8WUR$t7j]"}
 					width={innerWidth > 768 ? 256 : 128}
 					height={innerWidth > 768 ? 256 : 128}
 					fadeDuration={1440}
@@ -110,7 +123,7 @@
 	}
 
 	.content::before {
-		content: '';
+		content: "";
 		width: 200%;
 		max-width: 99vw;
 		height: 200%;
@@ -120,7 +133,11 @@
 		bottom: 0%;
 		left: -50%;
 		z-index: -1;
-		background: radial-gradient(50% 50% at 50% 50%, #afa2cd 0%, rgba(255, 255, 255, 0) 100%);
+		background: radial-gradient(
+			50% 50% at 50% 50%,
+			#afa2cd 0%,
+			rgba(255, 255, 255, 0) 100%
+		);
 		opacity: 0.05;
 	}
 

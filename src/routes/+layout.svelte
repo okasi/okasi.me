@@ -1,7 +1,7 @@
 <script>
-	import '../app.css';
-	import { fade } from 'svelte/transition';
-	import { onMount } from 'svelte';
+	import "./styles.css";
+	import { fade } from "svelte/transition";
+	import { onMount } from "svelte";
 	let ready = false;
 	onMount(() => (ready = true));
 </script>
@@ -13,7 +13,10 @@
 {#if ready}
 	<hr />
 	<footer in:fade>
-		<p>Made with <span title="Svelte ⚡️">🧡</span> in <span title="Sweden 🇸🇪">Stockholm</span></p>
+		<p>
+			Made with <span title="Svelte ⚡️">🧡</span> in
+			<span title="Sweden 🇸🇪">Stockholm</span>
+		</p>
 	</footer>
 {/if}
 
