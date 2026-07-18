@@ -10,6 +10,7 @@ const inter = Inter({
 });
 
 import { AnimatedFavicon } from "@/components/AnimatedFavicon";
+import { Screensaver } from "@/components/Screensaver";
 
 export const metadata: Metadata = {
 	title: {
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 		<html lang="en" suppressHydrationWarning className={inter.variable}>
 			<body className="min-h-screen antialiased">
 				<AnimatedFavicon />
+				<Screensaver />
 				{children}
 			</body>
 		</html>

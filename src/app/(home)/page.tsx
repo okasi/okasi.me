@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { CrosshairCursor } from "@/components/home/CrosshairCursor";
 import { HomeClient } from "@/components/home/HomeClient";
 import { Starfield } from "@/components/home/Starfield";
+
+export const metadata: Metadata = {
+	title: "Home",
+};
 
 export default function HomePage() {
 	return (

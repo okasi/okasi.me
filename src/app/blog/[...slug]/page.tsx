@@ -53,7 +53,7 @@ export async function generateMetadata(props: {
 	if (!page) notFound();
 
 	return {
-		title: `${page.data.title} · Oka Si`,
+		title: page.data.title,
 		description: page.data.description,
 	};
 }

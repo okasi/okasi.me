@@ -5,9 +5,14 @@ import {
 	DocsPage,
 	DocsTitle,
 } from "fumadocs-ui/page";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogSource } from "@/lib/blog-source";
+
+export const metadata: Metadata = {
+	title: "Blog",
+};
 
 export default async function BlogIndexPage() {
 	const posts = [...blogSource.getPages()].sort((a, b) => {
