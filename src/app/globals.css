@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@source "../**/*.{ts,tsx}";
+@source "../../components/**/*.{ts,tsx}";
+
+@layer base {
+	html,
+	body {
+		margin: 0;
+		min-height: 100%;
+	}
+
+	html.dark body {
+		background-color: #000;
+	}
+
+	html:not(.dark) body {
+		background-color: var(--color-fd-background, #f4f4f5);
+	}
+}

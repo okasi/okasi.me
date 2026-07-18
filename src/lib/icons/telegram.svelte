@@ -1,7 +1,11 @@
+<script>
+let { class: className = undefined, width = undefined } = $props();
+</script>
+
 <svg
-	class={$$props.class}
-	width={$$props.width}
-	height={$$props.width}
+	class={className}
+	width={width}
+	height={width}
 	viewBox="0 0 36 36"
 	fill="none"
 	xmlns="http://www.w3.org/2000/svg"

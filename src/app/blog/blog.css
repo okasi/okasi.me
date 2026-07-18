@@ -1,0 +1,32 @@
+/* Blog-only Fumadocs */
+@import "fumadocs-ui/style.css";
+
+html.dark:has(.blog-shell) body {
+	background-color: #181c25 !important;
+}
+
+.blog-shell {
+	position: relative;
+	min-height: 100vh;
+}
+
+/* Fixed gradient on docs grid — no JS; scrolling reveals different stops */
+.blog-shell #nd-docs-layout {
+	background: linear-gradient(180deg, #181c25, #252a37 60%, #38424f) !important;
+}
+
+.blog-shell #nd-sidebar {
+	background-color: #181c25 !important;
+}
+
+.blog-shell #nd-subnav {
+	background-color: #181c25 !important;
+	backdrop-filter: blur(8px);
+}
+
+.blog-shell #nd-page,
+.blog-shell #nd-toc {
+	background: transparent !important;
+	background-color: transparent !important;
+	box-shadow: none !important;
+}

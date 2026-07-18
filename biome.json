@@ -1,0 +1,38 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.5.3/schema.json",
+	"formatter": {
+		"indentStyle": "tab"
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "double"
+		}
+	},
+	"css": {
+		"parser": {
+			"cssModules": true
+		}
+	},
+	"linter": {
+		"rules": {
+			"a11y": {
+				"noSvgWithoutTitle": "off"
+			}
+		}
+	},
+	"files": {
+		"includes": [
+			"**",
+			"!**/.next",
+			"!**/.next",
+			"!**/node_modules",
+			"!**/dist",
+			"!**/out",
+			"!**/public",
+			"!**/static",
+			"!**/*.css",
+			"!**/*.svg",
+			"!**/*.svelte"
+		]
+	}
+}

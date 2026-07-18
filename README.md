@@ -1,38 +1,51 @@
-# create-svelte
+# Oka Si - Personal Website
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Welcome to the personal website and blog of **Okan** (Oka Si). This project serves as a portfolio, a blog, and a playground for modern web development technologies.
 
-## Creating a project
+## Tech Stack
 
-If you're seeing this, you've probably already done this step. Congrats!
+This project is built using:
+- **[Next.js](https://nextjs.org/)** - React framework for server-side rendering and static site generation.
+- **[Tailwind CSS v4](https://tailwindcss.com/)** - Utility-first CSS framework for rapid UI development.
+- **[Fumadocs](https://fumadocs.vercel.app/)** - Documentation and blog framework for Next.js.
+- **[Biome](https://biomejs.dev/)** - Fast formatter and linter for JavaScript/TypeScript.
+- **[TypeScript](https://www.typescriptlang.org/)** - Strongly typed programming language.
+
+## Getting Started
+
+### Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) installed (preferably via `nvm` to match the project's node version) along with `npm` or `pnpm`.
+
+### Installation
+
+Clone the repository and install the dependencies:
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+npm install
 ```
 
-## Developing
+### Development
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+To start the development server:
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Building
+## Scripts
 
-To create a production version of your app:
+- `npm run dev` - Starts the development server.
+- `npm run build` - Builds the application for production.
+- `npm run start` - Starts the production server.
+- `npm run format` - Formats the codebase using Biome.
+- `npm run lint` - Lints the codebase using Biome.
 
-```bash
-npm run build
-```
+## Code Quality
 
-You can preview the production build with `npm run preview`.
+This repository uses **Biome** to ensure code consistency and maintainability, drastically reducing technical debt.
+A Git hook is configured using `simple-git-hooks` and `lint-staged` to automatically format all files prior to any commits.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+## License
+
+This project is open-source and available under the [MIT License](LICENSE).
