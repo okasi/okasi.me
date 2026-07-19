@@ -53,7 +53,7 @@ test("homepage renders every interactive feature without browser errors", async 
 		);
 	}
 
-	const favicon = page.locator("link[rel='icon'][href^='data:']");
+	const favicon = page.locator("#animated-favicon");
 	await expect(favicon).toHaveAttribute("href", /data:image\/svg\+xml/);
 	const firstFavicon = await favicon.getAttribute("href");
 	await page.waitForTimeout(100);
@@ -98,7 +98,7 @@ test("idle mode updates and restores the overlay, title, and favicon", async ({
 	await page.clock.install();
 	await page.goto("/");
 	const originalTitle = await page.title();
-	await expect(page.locator("link[rel='icon'][href^='data:']")).toHaveAttribute(
+	await expect(page.locator("#animated-favicon")).toHaveAttribute(
 		"href",
 		/data:image\/svg\+xml/,
 	);
@@ -106,7 +106,7 @@ test("idle mode updates and restores the overlay, title, and favicon", async ({
 	await page.clock.fastForward(60_001);
 	await expect(page.getByTestId("screensaver")).toBeVisible();
 	await expect(page).toHaveTitle(new RegExp(`\\| ${originalTitle}$`));
-	const favicon = page.locator("link[rel='icon'][href^='data:']");
+	const favicon = page.locator("#animated-favicon");
 	await expect(favicon).toHaveAttribute("href", /%F0%9F%98%B4/);
 
 	await page.mouse.move(1, 1);
@@ -164,11 +164,30 @@ test("blog navigation, search, theme persistence, and client cleanup work", asyn
 	await expect(page.locator("#nd-toc")).toContainText(
 		"Keep the client boundary small",
 	);
+	await expect(page.locator("#nd-toc")).toContainText(
+		"Subsection H — end of scroll test",
+	);
+	await expect(page.locator("article")).toContainText(
+		"Fin. If you can read this line after a long scroll",
+	);
 
 	await page.getByRole("link", { name: "Home", exact: true }).click();
 	await expect(
 		page.getByRole("heading", { level: 1, name: "Yoyoyo, I'm Oka Si" }),
 	).toBeVisible();
+	await expect(page.locator(".home-intro")).toHaveCSS("flex-direction", "row");
+	await expect(page.locator(".home-intro")).toHaveCSS(
+		"align-items",
+		"flex-start",
+	);
+	await expect
+		.poll(() =>
+			page.evaluate(() => {
+				const favicons = document.head.querySelectorAll("link[rel='icon']");
+				return favicons.item(favicons.length - 1)?.id;
+			}),
+		)
+		.toBe("animated-favicon");
 	expect(
 		await page.evaluate(() => ({
 			scrollLocked: document.body.hasAttribute("data-scroll-locked"),

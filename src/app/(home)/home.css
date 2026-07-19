@@ -74,6 +74,23 @@ html:has(.home-page) body {
 	}
 }
 
+@media (min-width: 1024px) {
+	.home-page .home-intro {
+		flex-direction: row;
+		align-items: flex-start;
+		justify-content: space-between;
+	}
+
+	.home-page .home-copy {
+		text-align: left;
+	}
+
+	.home-page .home-passions,
+	.home-page .home-socials {
+		justify-content: flex-start;
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
 	.home-page .home-intro {
 		animation: none;

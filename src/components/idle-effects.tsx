@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 const IDLE_TIMEOUT_MS = 60_000;
 const TITLE_INTERVAL_MS = 800;
 const FAVICON_INTERVAL_MS = 42;
+const FAVICON_ID = "animated-favicon";
 const TITLE_FRAMES = ["ᶻ", "ᶻᶻ", "ᶻᶻᶻ", "ᶻᶻ"];
 const ACTIVITY_EVENTS = ["mousemove", "scroll", "keydown", "click"] as const;
 
@@ -26,20 +27,16 @@ export function IdleEffects() {
 	const [idle, setIdle] = useState(false);
 
 	useEffect(() => {
-		const existingIcon =
-			document.querySelector<HTMLLinkElement>("link[rel='icon']");
-		const icon = existingIcon ?? document.createElement("link");
-		const originalHref = icon.getAttribute("href");
-		const originalType = icon.getAttribute("type");
+		const icon = document.createElement("link");
+		icon.id = FAVICON_ID;
+		icon.rel = "icon";
+		icon.type = "image/svg+xml";
+		icon.sizes = "any";
+		document.head.appendChild(icon);
+
 		const reducedMotion = window.matchMedia(
 			"(prefers-reduced-motion: reduce)",
 		).matches;
-
-		if (!existingIcon) {
-			icon.rel = "icon";
-			document.head.appendChild(icon);
-		}
-		icon.type = "image/svg+xml";
 
 		let isIdle = false;
 		let idleTitle = "";
@@ -47,6 +44,17 @@ export function IdleEffects() {
 		let idleTimeout: number | undefined;
 		let titleInterval: number | undefined;
 		let faviconInterval: number | undefined;
+
+		const keepFaviconLast = () => {
+			const favicons =
+				document.head.querySelectorAll<HTMLLinkElement>("link[rel='icon']");
+			if (favicons.item(favicons.length - 1) !== icon) {
+				document.head.appendChild(icon);
+			}
+		};
+
+		const headObserver = new MutationObserver(keepFaviconLast);
+		headObserver.observe(document.head, { childList: true });
 
 		const stopFavicon = () => {
 			if (faviconInterval) window.clearInterval(faviconInterval);
@@ -56,11 +64,13 @@ export function IdleEffects() {
 		const startFavicon = () => {
 			stopFavicon();
 			icon.href = spinnerIcon(angle);
+			keepFaviconLast();
 			if (reducedMotion) return;
 
 			faviconInterval = window.setInterval(() => {
 				angle = (angle + 7) % 360;
 				icon.href = spinnerIcon(angle);
+				keepFaviconLast();
 			}, FAVICON_INTERVAL_MS);
 		};
 
@@ -74,6 +84,7 @@ export function IdleEffects() {
 			idleTitle = document.title;
 			stopFavicon();
 			icon.href = sleepingIcon;
+			keepFaviconLast();
 			setIdle(true);
 
 			let frame = 0;
@@ -111,16 +122,12 @@ export function IdleEffects() {
 			if (idleTimeout) window.clearTimeout(idleTimeout);
 			stopTitleAnimation();
 			stopFavicon();
+			headObserver.disconnect();
 			for (const event of ACTIVITY_EVENTS) {
 				document.removeEventListener(event, handleActivity);
 			}
 			if (idleTitle) document.title = idleTitle;
-			if (originalHref === null) icon.remove();
-			else {
-				icon.setAttribute("href", originalHref);
-				if (originalType === null) icon.removeAttribute("type");
-				else icon.setAttribute("type", originalType);
-			}
+			icon.remove();
 		};
 	}, []);
 

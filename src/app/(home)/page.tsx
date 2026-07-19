@@ -27,7 +27,7 @@ export default function HomePage() {
 			<div className="relative z-10 flex min-h-screen flex-col">
 				<main className="flex flex-1 items-center justify-center px-8 py-16">
 					<div className="home-intro flex w-full max-w-5xl flex-col items-center gap-12 lg:flex-row lg:items-start lg:justify-between">
-						<div className="flex-1 text-center lg:text-left">
+						<div className="home-copy flex-1 text-center lg:text-left">
 							<h1 className="mb-4 text-5xl font-light md:text-6xl lg:text-7xl">
 								Yoyoyo, I&apos;m <span className="font-normal">Oka Si</span>
 							</h1>
@@ -39,7 +39,7 @@ export default function HomePage() {
 								<p className="mb-2 text-sm uppercase tracking-widest text-white/60">
 									Passion for
 								</p>
-								<div className="flex flex-wrap justify-center gap-x-6 gap-y-1 lg:justify-start">
+								<div className="home-passions flex flex-wrap justify-center gap-x-6 gap-y-1 lg:justify-start">
 									{passions.map((passion) => (
 										<span
 											key={passion}
@@ -56,7 +56,7 @@ export default function HomePage() {
 							</p>
 							<nav
 								aria-label="Social links"
-								className="flex flex-wrap justify-center gap-4 lg:justify-start"
+								className="home-socials flex flex-wrap justify-center gap-4 lg:justify-start"
 							>
 								{socialLinks.map(({ label, href, icon }) => (
 									<a
