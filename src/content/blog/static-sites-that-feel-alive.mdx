@@ -1,0 +1,19 @@
+---
+title: Static sites that still feel alive
+description: Prerendered HTML plus focused client-side motion, image placeholders, and why SSG is enough for a personal site.
+date: 2026-07-14
+---
+
+A personal homepage does not need a server per request. **Static generation** at build time is enough for the document; the browser can still run a canvas animation and small interactions.
+
+On okasi.me, the landing page prerenders to HTML, the profile image uses an optimized static placeholder, and only the starfield and pointer effects need client-side JavaScript. That is the sweet spot: fast first paint, low hosting cost, and no cold starts.
+
+## Keep the client boundary small
+
+Interactive components should own browser APIs directly and leave content rendering to server components. This makes the initial document useful before hydration and keeps route changes predictable.
+
+## Prefer build-time content
+
+MDX keeps writing close to the codebase while Fumadocs turns it into typed, searchable pages during the build. The result is static content with navigation and search, without a request-time content service.
+
+Ship static HTML, add motion sparingly, and make each client component justify its runtime cost.

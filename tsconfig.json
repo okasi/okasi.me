@@ -2,7 +2,6 @@
 	"compilerOptions": {
 		"target": "ES2022",
 		"lib": ["dom", "dom.iterable", "esnext"],
-		"allowJs": true,
 		"skipLibCheck": true,
 		"strict": true,
 		"noEmit": true,
@@ -13,6 +12,7 @@
 		"isolatedModules": true,
 		"jsx": "react-jsx",
 		"incremental": true,
+		"tsBuildInfoFile": ".next/cache/typescript/tsconfig.tsbuildinfo",
 		"plugins": [
 			{
 				"name": "next"
@@ -21,7 +21,8 @@
 		"paths": {
 			"@/*": ["./src/*"],
 			"@/.source": ["./.source/server"]
-		}
+		},
+		"allowJs": true
 	},
 	"include": [
 		"next-env.d.ts",

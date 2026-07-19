@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
+import { IdleEffects } from "@/components/idle-effects";
 import "./globals.css";
 
 const inter = Inter({
@@ -9,10 +10,8 @@ const inter = Inter({
 	variable: "--font-inter",
 });
 
-import { AnimatedFavicon } from "@/components/AnimatedFavicon";
-import { Screensaver } from "@/components/Screensaver";
-
 export const metadata: Metadata = {
+	metadataBase: new URL("https://okasi.me"),
 	title: {
 		default: "Oka Si",
 		template: "%s | Oka Si",
@@ -41,7 +40,7 @@ export const metadata: Metadata = {
 		card: "summary_large_image",
 		title: "Oka Si",
 		description: "Okan's personal website and blog.",
-		creator: "@okan", // Update with actual handle if needed
+		creator: "@okasi_me",
 	},
 	robots: {
 		index: true,
@@ -69,8 +68,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang="en" suppressHydrationWarning className={inter.variable}>
 			<body className="min-h-screen antialiased">
-				<AnimatedFavicon />
-				<Screensaver />
+				<IdleEffects />
 				{children}
 			</body>
 		</html>

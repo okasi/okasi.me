@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 @source "../**/*.{ts,tsx}";
-@source "../../components/**/*.{ts,tsx}";
 
 @layer base {
 	html,
@@ -10,11 +9,41 @@
 		min-height: 100%;
 	}
 
+	body {
+		font-family: var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif;
+	}
+
 	html.dark body {
 		background-color: #000;
 	}
 
 	html:not(.dark) body {
 		background-color: var(--color-fd-background, #f4f4f5);
+	}
+}
+
+.screensaver-bounce {
+	width: min(12.5rem, 100vw);
+	height: min(6.25rem, 100vh);
+	animation:
+		screensaver-x 13s linear infinite alternate,
+		screensaver-y 7s linear infinite alternate;
+}
+
+@keyframes screensaver-x {
+	to {
+		transform: translateX(calc(100vw - min(12.5rem, 100vw)));
+	}
+}
+
+@keyframes screensaver-y {
+	to {
+		transform: translateY(calc(100vh - min(6.25rem, 100vh)));
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.screensaver-bounce {
+		animation: none;
 	}
 }

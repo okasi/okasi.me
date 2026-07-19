@@ -1,5 +1,5 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.5.3/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.5.4/schema.json",
 	"formatter": {
 		"indentStyle": "tab"
 	},
@@ -10,7 +10,8 @@
 	},
 	"css": {
 		"parser": {
-			"cssModules": true
+			"cssModules": true,
+			"tailwindDirectives": true
 		}
 	},
 	"linter": {
@@ -24,15 +25,13 @@
 		"includes": [
 			"**",
 			"!**/.next",
-			"!**/.next",
+			"!**/.source",
 			"!**/node_modules",
-			"!**/dist",
 			"!**/out",
+			"!**/playwright-report",
+			"!**/test-results",
 			"!**/public",
-			"!**/static",
-			"!**/*.css",
-			"!**/*.svg",
-			"!**/*.svelte"
+			"!**/*.{ico,jpg,png}"
 		]
 	}
 }
