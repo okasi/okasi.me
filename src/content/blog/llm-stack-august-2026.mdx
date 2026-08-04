@@ -6,7 +6,7 @@ date: 2026-08-04
 
 The frontier moved again. **Fable** and **GPT-5.6** shipped, and with them came a familiar pattern: more requests start getting rejected & flagged. Rate limits, capacity gates, silent denials — whatever the mechanism, it is frustrating enough that I have been rebalancing the stack.
 
-As of August 2026, **Grok 4.5** and **Kimi K3** are becoming my main drivers for day-to-day agent work.
+As of August 2026, **Kimi K3** is my main daily driver for agent work. **Grok 4.5** is the frontier intelligence pick when I want more peak reasoning — not the always-on path.
 
 ## Hermes + my own proxy
 
@@ -20,7 +20,8 @@ That split matters. Memory and continuity stay with Hermes; capability, price, a
 
 | Role | Model | Why |
 | --- | --- | --- |
-| Main drivers | **Grok 4.5**, **Kimi K3** | Reliability without frequent rejections |
+| Main / daily driver | **Kimi K3** | Reliability without frequent rejections |
+| Frontier intelligence | **Grok 4.5** | Peak reasoning when I want the smarter pass |
 | High-volume / cheap bulk | **DeepSeek-V4-Flash-0731** | Credits stretch farthest; huge request volume |
 | Strong coding volume | **GLM-5.2** | Solid multiplier on subscription tiers |
 | Backup / failover | **GPT-5.6 Luna** | Quality when capacity allows — not the always-on path |
@@ -55,8 +56,8 @@ If that holds, Hermes keeps the memory and threads; the proxy can point heavy jo
 ## Practical takeaway
 
 1. **Route, don’t marry a single API.** Hermes for memory and threads; my proxy for multi-provider routing so threads stay alive when one vendor flakes.
-2. **Optimize for rejects as much as for quality.** Grok 4.5 and Kimi K3 are winning on reliability right now.
-3. **Buy tokens where the multiplier matches the model.** DeepSeek on Command Code Go / ClinePass; Grok on Cursor’s model pool; GPT-5.6 on OpenCode Go when you need it.
+2. **Optimize for rejects as much as for quality.** Kimi K3 is winning as the daily driver right now; Grok 4.5 is for frontier intelligence, not volume.
+3. **Buy tokens where the multiplier matches the model.** Kimi on ClinePass; DeepSeek on Command Code Go; Grok on Cursor’s model pool; GPT-5.6 on OpenCode Go when you need it.
 4. **Local is the reliability floor.** Qwen 3.8 27B on a 3090 is the next step toward a stack that does not depend on someone else’s capacity queue.
 
 I’ll update this as the 3090 path lands.
