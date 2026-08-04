@@ -10,6 +10,7 @@ export const { docs: blog, meta } = defineDocs({
 	docs: {
 		schema: frontmatterSchema.extend({
 			date: z.coerce.date().optional(),
+			updated: z.coerce.date().optional(),
 		}),
 	},
 });

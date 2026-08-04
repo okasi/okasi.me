@@ -6,7 +6,8 @@ import {
 } from "fumadocs-ui/page";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { blogSource, formatBlogDate } from "@/lib/blog-source";
+import { BlogTimestamps } from "@/components/blog-timestamps";
+import { blogSource } from "@/lib/blog-source";
 
 export const metadata: Metadata = {
 	title: "Blog",
@@ -39,14 +40,11 @@ export default function BlogIndexPage() {
 										{page.data.description}
 									</p>
 								) : null}
-								{page.data.date ? (
-									<time
-										className="mt-2 block text-xs text-fd-muted-foreground"
-										dateTime={page.data.date.toISOString()}
-									>
-										{formatBlogDate(page.data.date)}
-									</time>
-								) : null}
+								<BlogTimestamps
+									published={page.data.date}
+									updated={page.data.updated}
+									className="mt-2 space-y-0.5 text-xs text-fd-muted-foreground"
+								/>
 							</Link>
 						</li>
 					))}
