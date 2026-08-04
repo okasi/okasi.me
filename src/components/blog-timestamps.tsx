@@ -8,15 +8,6 @@ type BlogTimestampsProps = {
 	className?: string;
 };
 
-const localDateTimeFormatter = new Intl.DateTimeFormat(undefined, {
-	year: "numeric",
-	month: "long",
-	day: "numeric",
-	hour: "2-digit",
-	minute: "2-digit",
-	timeZoneName: "short",
-});
-
 function toIso(value?: Date | string) {
 	if (!value) return undefined;
 	const date = value instanceof Date ? value : new Date(value);
@@ -24,9 +15,78 @@ function toIso(value?: Date | string) {
 	return date.toISOString();
 }
 
+function cityFromTimeZone(timeZone: string) {
+	const segment = timeZone.split("/").pop() ?? timeZone;
+	return segment.replaceAll("_", " ");
+}
+
+/** e.g. "4 August 2026, 12:18 · CEST / Stockholm (GMT+2)" */
 function formatLocal(iso?: string) {
 	if (!iso) return null;
-	return localDateTimeFormatter.format(new Date(iso));
+
+	const date = new Date(iso);
+	const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+	const city = cityFromTimeZone(timeZone);
+
+	const dateTimeParts = new Intl.DateTimeFormat(undefined, {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+		hour: "2-digit",
+		minute: "2-digit",
+		hour12: false,
+		timeZone,
+	}).formatToParts(date);
+
+	const dateText = [
+		dateTimeParts.find((p) => p.type === "day")?.value,
+		dateTimeParts.find((p) => p.type === "month")?.value,
+		dateTimeParts.find((p) => p.type === "year")?.value,
+	]
+		.filter(Boolean)
+		.join(" ");
+
+	const hour = dateTimeParts.find((p) => p.type === "hour")?.value;
+	const minute = dateTimeParts.find((p) => p.type === "minute")?.value;
+	const timeText = hour && minute ? `${hour}:${minute}` : "";
+
+	const shortName =
+		new Intl.DateTimeFormat(undefined, {
+			timeZone,
+			timeZoneName: "short",
+		})
+			.formatToParts(date)
+			.find((p) => p.type === "timeZoneName")?.value ?? "";
+
+	const longOffset =
+		new Intl.DateTimeFormat(undefined, {
+			timeZone,
+			timeZoneName: "longOffset",
+		})
+			.formatToParts(date)
+			.find((p) => p.type === "timeZoneName")?.value ?? "";
+
+	// "GMT+02:00" → "GMT+2"; keep "GMT" / "UTC" as-is
+	const gmtHint = longOffset.replace(/^GMT([+-])0?(\d+)(?::00)?$/, "GMT$1$2");
+
+	// Prefer named abbr (CET/CEST) over raw GMT when shortName is already GMT*
+	const abbr =
+		shortName && !/^GMT/i.test(shortName) && !/^UTC$/i.test(shortName)
+			? shortName
+			: city
+				? undefined
+				: shortName || undefined;
+
+	const zoneLabel = [abbr, city].filter(Boolean).join(" / ");
+	const withOffset =
+		zoneLabel && gmtHint && !zoneLabel.includes(gmtHint)
+			? `${zoneLabel} (${gmtHint})`
+			: zoneLabel || gmtHint;
+
+	return (
+		[dateText, timeText].filter(Boolean).join(", ") +
+		(withOffset ? ` · ${withOffset}` : "")
+	);
 }
 
 function TimestampLine({
