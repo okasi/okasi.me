@@ -2,12 +2,12 @@
 title: Which LLMs I use as of August 2026
 description: My current model and provider mix after Fable and GPT-5.6 — rejections, Hermes for memory, my own proxy for routing, subscription multipliers, and the RTX 3090 plan.
 date: 2026-08-04T12:18:53+02:00
-updated: 2026-08-04T14:45:00+02:00
+updated: 2026-08-07T02:25:23+02:00
 ---
 
 The frontier moved again. **Fable** and **GPT-5.6** shipped, and with them came a familiar pattern: more requests start getting rejected & flagged. Rate limits, capacity gates, silent denials — whatever the mechanism, it is frustrating enough that I have been rebalancing the stack.
 
-As of August 2026, **Kimi K3** is my main daily driver for agent work. **Grok 4.5** is the frontier intelligence pick when I want more peak reasoning — not the always-on path.
+As of August 2026, my stack is reliability-first: **Grok 4.5** is the frontier intelligence pick when I want more peak reasoning — not the always-on path.
 
 ## Hermes + my own proxy
 
@@ -21,7 +21,6 @@ That split matters. Memory and continuity stay with Hermes; capability, price, a
 
 | Role | Model | Why |
 | --- | --- | --- |
-| Main / daily driver | **Kimi K3** | Reliability without frequent rejections |
 | Frontier intelligence | **Grok 4.5** | Peak reasoning when I want the smarter pass |
 | High-volume / cheap bulk | **DeepSeek-V4-Flash-0731** | Credits stretch farthest; huge request volume |
 | Strong coding volume | **GLM-5.2** | Solid multiplier on subscription tiers |
@@ -35,7 +34,6 @@ Multiplier here means **approximate list-price value ÷ price paid**. Higher is 
 
 | Model | Command Code Go ($1) | ClinePass ($9.99) | OpenCode Go ($10) | Cursor Pro ($20) | Cursor Pro+ ($60) |
 | --- | --- | --- | --- | --- | --- |
-| **Kimi K3** | Value $10 · 10× · low volume | Value ~$60 · ~6.0× · medium volume | Value ~$15 · 1.5× · ~490 req/mo (typ. 1,050 in + 76,500 cached + 300 out) | Limited | Limited |
 | **GLM-5.2** | Value $10 · 10× | Value ~$40–50 · ~4–5× · strong volume | Value ~$25–30 · ~2.5–3× · ~4,300 req/mo (typ. 700 in + 52,000 cached + 150 out) | Limited | Limited |
 | **GPT-5.6 Luna** | Value $10+ · 10×+ (heavy discounts) | ❌ Not available | Value ~$25–35 · ~2.5–3.5× · ~10,250 req/mo (typ. 1,000 in + 50,000 cached + 220 out) | Value ~$20 · 1.0× | Value ~$70 · ~1.2× |
 | **DeepSeek-V4-Flash-0731** | Value $10 · 10× · credits stretch farthest | Value very high · 8–15×+ · extremely high volume | Value ~$50–55 · ~5–5.5× · ~158,150 req/mo · ~31,650 / 5h | Limited | Limited |
@@ -44,7 +42,6 @@ Multiplier here means **approximate list-price value ÷ price paid**. Higher is 
 ### Quick pairing suggestions
 
 - **Command Code Go** → DeepSeek-V4-Flash-0731
-- **ClinePass** → Kimi K3
 - **OpenCode Go** → GPT-5.6 Luna
 - **Cursor Pro** → Grok 4.5
 
@@ -57,8 +54,8 @@ If that holds, Hermes keeps the memory and threads; the proxy can point heavy jo
 ## Practical takeaway
 
 1. **Route, don’t marry a single API.** Hermes for memory and threads; my proxy for multi-provider routing so threads stay alive when one vendor flakes.
-2. **Optimize for rejects as much as for quality.** Kimi K3 is winning as the daily driver right now; Grok 4.5 is for frontier intelligence, not volume.
-3. **Buy tokens where the multiplier matches the model.** Kimi on ClinePass; DeepSeek on Command Code Go; Grok on Cursor’s model pool; GPT-5.6 on OpenCode Go when you need it.
+2. **Optimize for rejects as much as for quality.** Pick reliability first; Grok 4.5 is for frontier intelligence, not volume.
+3. **Buy tokens where the multiplier matches the model.** DeepSeek on Command Code Go; Grok on Cursor’s model pool; GPT-5.6 on OpenCode Go when you need it.
 4. **Local is the reliability floor.** Qwen 3.8 27B on a 3090 is the next step toward a stack that does not depend on someone else’s capacity queue.
 
 I’ll update this as the 3090 path lands.
